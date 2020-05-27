@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if form %}
+        <form action="/search" method="get">
+            {{ form.hidden_tag() }}
+            <div>
+                <p>
+                    <b>{{ form.area_min.label }}</b>
+                    {{ form.area_min() }}
+                </p>
+            </div>
+            <div>
+                <p>
+                    <b>{{ form.area_max.label }}</b>
+                    {{ form.area_max() }}
+                </p>
+            </div>
+            <div>
+                <p>
+                    <b>{{ form.floor.label }}</b>
+                    {{ form.floor() }}
+                </p>
+            </div>
+            <div>
+                <p>
+                    <b>{{ form.subway_station_id.label }}</b>
+                    {{ form.subway_station_id() }}
+                </p>
+            </div>
+            <div>
+                <p>
+                    {{ form.submit() }}
+                </p>
+            </div>
+            <div>
+                <p>
+                    {{ form.clear() }}
+                </p>
+            </div>
+        </form>
+    {% else %}
+        <h1>Ошибка при загрузке формы</h1>
+    {% endif %}
+    <hr>
+
+    {% if objs %}
+        <p><b>Найдено: </b> {{ len_array }}</p>
+        {% for obj in objs %}
+            <div>
+                <a href="{{ url_for('main.page', obj_id=obj[0]) }}">
+                    <h2>{{ obj[1] }}</h2>
+                </a>
+                <p><b>Адрес:</b> {{ obj[2] }}</p>
+                <p><b>Этаж:</b> {{ obj[3] }}</p>
+                <p><b>Площядь:</b> {{ obj[4] }}</p>
+                <p><b>Тип:</b> {{ obj[5].capitalize() }}</p>
+                <p>
+                    <b>Ближайшие станции метро:</b>
+                </p>
+                <ul>
+                {% for station in obj[6] %}
+                    <li>{{ station.capitalize() }}</li>
+                {% endfor %}
+                </ul>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1>Объект не найден</h1>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,1 @@
+DATABASE_URL='postgres://pg_user:pg_password@pg_ip:pg_port/pg_database'

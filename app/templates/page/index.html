@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if obj %}
+        <h1>{{ obj[0][0] }}</h1>
+        <hr>
+        <p><b>Адрес:</b> {{ obj[0][1] }}</p>
+        <p><b>Этаж:</b> {{ obj[0][2] }}</p>
+        <p><b>Площядь:</b> {{ obj[0][3] }}</p>
+        <p><b>Тип:</b> {{ obj[0][4].capitalize() }}</p>
+        <p>
+            <b>Ближайшие станции метро:</b>
+        </p>
+        <ul>
+        {% for station in obj[0][5] %}
+            <li>{{ station.capitalize() }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <h1>Объект не найден</h1>
+    {% endif %}
+    <h2>
+        <a href="#" id='back'>
+            Назад
+        </a>
+    </h2>
+{% endblock %}
