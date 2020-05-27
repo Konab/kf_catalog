@@ -28,6 +28,8 @@ touch .env
 python migration.py
 ```
 
+Дамп в директории: _dump/catalog.sql
+
 ## Запуск приложения
 
 ```
